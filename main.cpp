@@ -17,6 +17,7 @@ string validFileTypes[] = {".txt", ".json", ".html", ".docx", ".go", ".cpp"};
 
 int main(int argc, char *argv[]){
     if(argc != 3){
+        // Error handling for wrong amout of args
         // Direction on how to use
         printf("Usage: main.exe <word> <dirctory_path>\n");
         return -1;
@@ -27,15 +28,19 @@ int main(int argc, char *argv[]){
 
     vector<string> fileList; //Container to store list of all the files in the folder and it's subfolders (all descendant files)
     fileList = listDirectories(dirPath,fileList);
-    // cout << "FILE LIST" << endl;
-    // printVector(fileList);
 
     vector<string> filesContaining;  //Container to store the list of files that contain the target word.
     filesContaining = searchFiles(fileList, targetWord, filesContaining);
-    cout << "____________________" << endl;
-    cout << ("Target word '"+targetWord+"' found in: ") << endl;
-    printVector(filesContaining);
-    cout << "____________________" << endl;
+    if(!(filesContaining.size() == 0)){
+        cout << "____________________" << endl;
+        cout << ("Target word '"+targetWord+"' found in: ") << endl;
+        printVector(filesContaining);
+        cout << "____________________" << endl;
+    }else{
+        cout << "____________________" << endl;
+        cout << "Word not found." << endl;
+        cout << "____________________" << endl;
+    }
 }
 
 string checkPathString( string strPath){
