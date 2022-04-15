@@ -13,6 +13,7 @@ vector<string> searchFiles( vector<string> fileList, string targetWord, vector<s
 bool FileLinearSearch(fstream& file, string fileContent, string targetWord);
 void printVector(vector<string> vec, int index=0);
 
+string validFileTypes[] = {".txt", ".json", ".html", ".docx", ".go", ".cpp"};
 
 int main(int argc, char *argv[]){
     if(argc != 3){
@@ -26,16 +27,15 @@ int main(int argc, char *argv[]){
 
     vector<string> fileList; //Container to store list of all the files in the folder and it's subfolders (all descendant files)
     fileList = listDirectories(dirPath,fileList);
-    cout << "FILE LIST" << endl;
-    printVector(fileList);
+    // cout << "FILE LIST" << endl;
+    // printVector(fileList);
 
-    cout << "________________________" << endl;
-    cout << "ITERATION" << endl;
     vector<string> filesContaining;  //Container to store the list of files that contain the target word.
     filesContaining = searchFiles(fileList, targetWord, filesContaining);
-    cout << "________________________" << endl;
-    cout << "FILES CONTAINING" << endl;
+    cout << "____________________" << endl;
+    cout << ("Target word '"+targetWord+"' found in: ") << endl;
     printVector(filesContaining);
+    cout << "____________________" << endl;
 }
 
 string checkPathString( string strPath){
@@ -75,8 +75,8 @@ vector<string> searchFiles(vector<string> fileList, string targetWord, vector<st
     } 
     filesystem::path fileName = fileList[index];
     // cout << fileName.string() << endl;
-
-    if(fileName.extension() == ".txt"){
+    
+    if(find(begin(validFileTypes), end(validFileTypes), fileName.extension())){ //check if the file type is in the valid file type list
         fstream file;
         file.open(fileName, ios::in);
         if(!file){
@@ -87,7 +87,7 @@ vector<string> searchFiles(vector<string> fileList, string targetWord, vector<st
         // search
         bool wordFound = FileLinearSearch(file, fileContent, targetWord);
         if(wordFound){
-            cout << fileName.string() << endl;
+            // cout << fileName.string() << endl;
             filesContaining.push_back(fileName.string());
         }
     }
