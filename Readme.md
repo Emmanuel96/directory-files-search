@@ -9,4 +9,4 @@
     g++ main.cpp -o main -std=c++17
 
 ## Run: 
-    main.exe <word> <directory_path>
+    ./main <word> <directory_path>
