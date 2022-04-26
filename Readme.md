@@ -10,3 +10,15 @@
 
 ## Run: 
     ./main <word> <directory_path>
+
+    
+## Testing
+### Run all tests
+    cd tests
+    g++ ./test_all.cpp -o run_test -std=c++17
+
+### Run individual function test suites
+    cd tests 
+    g++ ./test_listDirectories.cpp -o test -std=c++17
+    g++ ./test_searchFiles.cpp -o test -std=c++17
+    g++ ./test_fileLinearSearch.cpp -o test -std=c++17
