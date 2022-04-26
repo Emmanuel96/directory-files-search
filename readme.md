@@ -6,7 +6,18 @@
     The files in the result set are printed to stdout each on a separate line.
 
 ## Build:
-    g++ main.cpp -o main -std=c++17
+    g++ ./main.cpp -o main -std=c++17
 
 ## Run: 
-    main.exe <word> <directory_path>
+    ./main.exe <word> <directory_path>
+
+## Testing
+### Run all tests
+    cd tests
+    g++ ./test_all.cpp -o run_test -std=c++17
+
+### Run individual function test suites
+    cd tests 
+    g++ ./test_listDirectories.cpp -o test -std=c++17
+    g++ ./test_searchFiles.cpp -o test -std=c++17
+    g++ ./test_fileLinearSearch.cpp -o test -std=c++17
